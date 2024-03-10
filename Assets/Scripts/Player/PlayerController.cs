@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> characters = new();
 
-    [HideInInspector] public UnityEvent<int> ThunderBolt = new();
+    //[HideInInspector] public UnityEvent<int> ThunderBolt = new();
 
     public bool x = false;
 
@@ -36,16 +36,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (x)
-        {
-            x = false;
-            ThunderBolt.Invoke(15);
-        }
+        //if (x)
+        //{
+        //    x = false;
+        //    ThunderBolt.Invoke(15);
+        //}
+
 
         Move();
 
         Aim();
-        //ControlMouse();
     }
 
     void FixedUpdate()
@@ -115,20 +115,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-    //private void ControlMouse()
-    //{
-    //    mousePos = Input.mousePosition;
-
-    //    mousePos = cam.ScreenToWorldPoint
-    //        (new Vector3(mousePos.x, mousePos.y, cam.transform.position.y - transform.position.y));
-
-    //    targetRotation = Quaternion.LookRotation
-    //        (mousePos - new Vector3(transform.position.x, 0, transform.position.z));
-
-    //    transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle
-    //            (transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
-    //}
 
     public void SelectClass(int characterIndex)
     {

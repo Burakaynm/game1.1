@@ -5,13 +5,14 @@ public class EnemyHealth : MonoBehaviour
 {
     private Animator animator;
     private EnemyController enemyController;
+    public Interactor interactor;
+    private PlayerController playerController;
 
     public int startingHealth;
     public int currentHealth;
 
     public bool isAlive = true;
 
-    private PlayerController playerController;
 
     private void Start()
     {
@@ -24,12 +25,12 @@ public class EnemyHealth : MonoBehaviour
     {
         if(!playerController) playerController = FindObjectOfType<PlayerController>();
 
-        playerController.ThunderBolt.AddListener(TakeDamage);
+        interactor.ThunderBolt.AddListener(TakeDamage);
     }
 
     private void OnDisable()
     {
-        playerController.ThunderBolt.RemoveListener(TakeDamage);
+        interactor.ThunderBolt.RemoveListener(TakeDamage);
     }
 
     public void TakeDamage(int damage)

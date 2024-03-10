@@ -33,6 +33,7 @@ public class MageAttack : MonoBehaviour
         {
             //ControlMouse();
             ShootMagic();
+            PlayerInteract();
         }
 
     }
@@ -71,5 +72,13 @@ public class MageAttack : MonoBehaviour
     public void MageAttackBase()
     {
         staff.Shoot();
+    }
+
+    private void PlayerInteract()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            animator.SetTrigger("Interact");
+        }
     }
 }
