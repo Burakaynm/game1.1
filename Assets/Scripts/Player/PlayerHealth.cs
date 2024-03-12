@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         currentHealth -= damage;
+        CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Gethit"))
             animator.SetTrigger("GetHit");

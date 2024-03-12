@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     private EnemyController enemyController;
     public Interactor interactor;
     private PlayerController playerController;
+    public UIManager manager;
 
     public int startingHealth;
     public int currentHealth;
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
         if (!isAlive) return;
 
         currentHealth -= damage;
+        CharacterEvents.characterDamaged.Invoke(gameObject, damage);
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("isHurt"))
         {
