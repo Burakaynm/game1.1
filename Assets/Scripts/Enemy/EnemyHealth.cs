@@ -63,10 +63,10 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         isAlive = false;
-        animator.SetBool("isAlive", false);
-        animator.SetBool("isAttacking", false);
         enemyController.enabled = false;
         transform.position = transform.position;
+        animator.SetBool("isAlive", false);
+        animator.SetBool("isAttacking", false);
         Destroy(gameObject, 5f);
     }
 
