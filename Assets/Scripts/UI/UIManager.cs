@@ -13,13 +13,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         CharacterEvents.characterDamaged +=(CharacterTookDamage);
-        CharacterEvents.characterDamaged += (CharacterHealed);
+        CharacterEvents.characterHealed += (CharacterHealed);
     }
 
     private void OnDisable()
     {
         CharacterEvents.characterDamaged -= (CharacterTookDamage);
-        CharacterEvents.characterDamaged -= (CharacterHealed);
+        CharacterEvents.characterHealed -= (CharacterHealed);
     }
 
     public void CharacterTookDamage(GameObject character, float damageReceived)
@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
         TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPos, Quaternion.identity,gameCanvas.transform)
             .GetComponent<TMP_Text>();
 
-       tmpText.text = damageReceived.ToString();
+        tmpText.text = damageReceived.ToString();
     }
 
     public void CharacterHealed(GameObject character, float healthRestored)
