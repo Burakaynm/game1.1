@@ -67,6 +67,7 @@ public class Spawner : MonoBehaviour
                 Vector3 temp = spawnPos + (Random.insideUnitSphere * SpawnRadius); //Choose random place to spawn
                 temp.y = spawnPos.y;
 
+                //GameObject projectileObj = ObjectPool.instance.GetPooledObj(rand);
                 GameObject newBuff = Instantiate(buffToSpawn, temp, spawn.rotation);  //Spawn enemies
 
                 newBuff.SetActive(true);

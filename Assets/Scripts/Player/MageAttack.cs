@@ -31,17 +31,17 @@ public class MageAttack : MonoBehaviour
 
     private void ShootMagic()
     {
-        if (Input.GetButtonDown("IncAttackSpeed"))
-        {
-            PlayerController.attackSpeed++;
-        }
-        else if (Input.GetButtonDown("DecAttackSpeed"))
-        {
-            if (PlayerController.attackSpeed > 1)
-            {
-                PlayerController.attackSpeed--;
-            }
-        }
+        //if (Input.GetButtonDown("IncAttackSpeed"))
+        //{
+        //    PlayerController.attackSpeed++;
+        //}
+        //else if (Input.GetButtonDown("DecAttackSpeed"))
+        //{
+        //    if (PlayerController.attackSpeed > 1)
+        //    {
+        //        PlayerController.attackSpeed--;
+        //    }
+        //}
 
         if (Input.GetMouseButton(0) /*|| Input.GetMouseButtonDown(1)*/)
         {

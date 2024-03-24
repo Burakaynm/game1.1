@@ -57,7 +57,6 @@ public class EnemyRangedAttack : MonoBehaviour
             animator.SetBool("isAttacking", false);
             enemyController.enabled = false;
             inRange = false;
-            Debug.Log("Range false yapti icinde");
         }
     }
 
