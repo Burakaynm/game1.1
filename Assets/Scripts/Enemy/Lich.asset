@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Lich
   m_EditorClassIdentifier: 
   followDistance: 50
-  speed: 0.001
+  speed: 0.003
   attackRange: 12
   damage: 25

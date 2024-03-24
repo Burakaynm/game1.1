@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a90786cf72aa94a9984822fc9e8acd, type: 3}
-  m_Name: MinorHealthBuff
+  m_Script: {fileID: 11500000, guid: 6642a02b61b431647a6a381b4caea47f, type: 3}
+  m_Name: AttackSpeedDebuff
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: -1

@@ -10,16 +10,14 @@ public class PlayerController : MonoBehaviour
 {
     private Animator animator;
     private Camera cam;
-    private Transform character;
     public Rigidbody rb;
     [SerializeField] private LayerMask groundMask;
 
     //private Quaternion targetRotation;
 
-    public float walkSpeed = 5f;
-    public float runSpeed = 8f;
-    public float currSpeed;
+    public float speed = 8f;
     public float rotationSpeed = 2000f;
+    public static float attackSpeed = 1f;
 
     Vector3 movement;
 
@@ -50,8 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        currSpeed = Input.GetButton("Run") ? runSpeed : walkSpeed;
-        rb.MovePosition(rb.position + movement * currSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
     private void Move()
@@ -105,12 +102,10 @@ public class PlayerController : MonoBehaviour
             if (movement != Vector3.zero)
             {
                 animator.SetBool("isMoving", true);
-                animator.SetBool("isRunning", Input.GetButton("Run"));
             }
             else
             {
                 animator.SetBool("isMoving", false);
-                animator.SetBool("isRunning", false);
             }
         }
 

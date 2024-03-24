@@ -13,11 +13,14 @@ public class EnemyAttack : MonoBehaviour
 
     private bool isKilled; // Dont attack when player is dead
 
+
+
     private void Start()
     {
         isKilled = false;
         if (enemyController == null) Debug.LogError("EnemyController is not assigned!");
         if (enemyData == null) Debug.LogError("EnemyData is not assigned!");
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
     }
     private void Update()
     {
@@ -41,21 +44,23 @@ public class EnemyAttack : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        playerHealth = other.GetComponent<PlayerHealth>();
 
-        if (playerHealth.currentHealth <= 0)
+        if(!playerHealth) { return; }
+
+        if (other.CompareTag("Player"))
         {
-            isKilled = true;
-            animator.SetBool("Victory", true);
-            animator.SetBool("isAttacking", false); // Saldýrýyý durdur
-            enemyController.enabled = false;
-        }
-        else if (!isKilled && playerHealth.currentHealth > 0)
-        {
-            playerHealth.TakeDamage(enemyData.damage);
-        }
-
-
+            if (playerHealth.currentHealth <= 0)
+            {
+                isKilled = true;
+                animator.SetBool("Victory", true);
+                animator.SetBool("isAttacking", false); // Saldýrýyý durdur
+                enemyController.enabled = false;
+            }
+            else if (!isKilled && playerHealth.currentHealth > 0)
+            {
+                playerHealth.TakeDamage(enemyData.damage);
+            }
+        }     
     }
 
     private void OnTriggerExit(Collider other)

@@ -5,8 +5,8 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class KnightAttack : MonoBehaviour
 {
-    public PlayerController playerController;
     public Animator animator;
+    public PlayerHealth health;
 
     private int lightDamage = 10;
     private int heavyDamage = 20;
@@ -14,11 +14,16 @@ public class KnightAttack : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        Attack();
+        if (health.currentHealth > 0)
+        {
+            Attack();
+            PlayerInteract();
+        }
     }
 
     void Attack()
@@ -48,5 +53,13 @@ public class KnightAttack : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 
+    }
+
+    private void PlayerInteract()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            animator.SetTrigger("Interact");
+        }
     }
 }

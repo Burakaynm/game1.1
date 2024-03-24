@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe7363b132380e46b5628b3415429be, type: 3}
-  m_Name: Grunt
+  m_Script: {fileID: 11500000, guid: 77440598bdc78fb448b7ecee7622a0a4, type: 3}
+  m_Name: SpeedBuff
   m_EditorClassIdentifier: 
-  followDistance: 50
-  speed: 0.005
-  attackRange: 2.5
-  damage: 30
+  amount: 2
