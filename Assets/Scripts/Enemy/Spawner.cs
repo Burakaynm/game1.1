@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs; //Make array for multiple enemies
+    public GameObject[] enemyPrefabs; 
     public GameObject[] buffPrefabs;
     public GameObject[] debuffPrefabs;
     public Transform spawn;
-    private GameObject enemyToSpawn;
-    private GameObject buffToSpawn;
-    private GameObject debuffToSpawn;
+    private GameObject toSpawn;
 
     public float enemySpawnInterval;
     public float buffSpawnInterval;
     public float debuffSpawnInterval;
+    private float spawnInterval = 0;
     private float SpawnRadius = 30f;
+    private int levelCount = 1;
 
     private bool canSpawn = true;
 
@@ -23,35 +23,42 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(EnemySpawnwer());
-        StartCoroutine(BuffSpawner());
-        StartCoroutine(DebuffSpawner());
+        //StartCoroutine(EnemySpawnwer(enemyPrefabs, 0));
+        StartCoroutine(BuffSpawner(buffPrefabs, 1));
+        //StartCoroutine(DebuffSpawner(debuffPrefabs,1));
 
         spawnPos = spawn.transform.position;
     }
-    private IEnumerator EnemySpawnwer()
+
+    private void Update()
     {
-        if (spawn != null)
+        spawnInterval += Time.deltaTime;
+        if(spawnInterval > enemySpawnInterval)
         {
-            WaitForSeconds enemyWait = new WaitForSeconds(enemySpawnInterval);
-
-            while (canSpawn)
-            {
-                yield return enemyWait;
-
-                int rand = Random.Range(0, enemyPrefabs.Length);    //Select enemies to spawn
-                enemyToSpawn = enemyPrefabs[rand];
-
-                Vector3 temp = spawnPos + (Random.insideUnitSphere * SpawnRadius); //Choose random place to spawn
-                temp.y = spawnPos.y;
-
-                GameObject newEnemy = Instantiate(enemyToSpawn, temp, spawn.rotation);  //Spawn enemies
-
-                newEnemy.SetActive(true);
-            }
+            SpawnAmount(enemyPrefabs, 0, levelCount);
+            levelCount++;
+            enemySpawnInterval += levelCount;
+            spawnInterval = 0;
         }
     }
-    private IEnumerator BuffSpawner()
+
+    //private IEnumerator EnemySpawnwer(GameObject[] prefab, float spawnY)
+    //{
+    //    if (spawn)
+    //    {
+    //        while (canSpawn)
+    //        {
+    //            WaitForSeconds enemyWait = new WaitForSeconds(enemySpawnInterval);
+
+    //            yield return enemyWait;
+
+    //            SpawnAmount(prefab, spawnY,levelCount);
+    //            levelCount++;
+
+    //        }
+    //    }
+    //}
+    private IEnumerator BuffSpawner(GameObject[] prefab, float spawnY)
     {
         if (spawn != null)
         {
@@ -61,42 +68,44 @@ public class Spawner : MonoBehaviour
             {
                 yield return buffWait;
 
-                int rand = Random.Range(0, buffPrefabs.Length);    //Select enemies to spawn
-                buffToSpawn = buffPrefabs[rand];
-
-                Vector3 temp = spawnPos + (Random.insideUnitSphere * SpawnRadius); //Choose random place to spawn
-                temp.y = spawnPos.y;
-
-                //GameObject projectileObj = ObjectPool.instance.GetPooledObj(rand);
-                GameObject newBuff = Instantiate(buffToSpawn, temp, spawn.rotation);  //Spawn enemies
-
-                newBuff.SetActive(true);
+                Spawn(prefab, spawnY);
             }
         }
     }
-    private IEnumerator DebuffSpawner()
+    //private IEnumerator DebuffSpawner(GameObject[] prefab, float spawnY)
+    //{
+    //    if (spawn != null)
+    //    {
+    //        WaitForSeconds debuffWait = new WaitForSeconds(debuffSpawnInterval);
+
+    //        while (canSpawn)
+    //        {
+    //            yield return debuffWait;
+
+    //            Spawn(prefab, spawnY);
+    //        }
+    //    }
+    //}
+
+    private void Spawn(GameObject[] prefab, float spawnY)
     {
-        if (spawn != null)
-        {
-            WaitForSeconds debuffWait = new WaitForSeconds(debuffSpawnInterval);
+        int rand = Random.Range(0, prefab.Length);    //Select enemies to spawn
+        toSpawn = prefab[rand];
 
-            while (canSpawn)
-            {
-                yield return debuffWait;
+        Vector3 temp = spawnPos + (Random.insideUnitSphere * SpawnRadius); //Choose random place to spawn
+        temp.y = spawnY;
 
-                int rand = Random.Range(0, debuffPrefabs.Length);    //Select enemies to spawn
-                debuffToSpawn = debuffPrefabs[rand];
+        GameObject newPrefab = Instantiate(toSpawn, temp, spawn.rotation);  //Spawn enemies
 
-                Vector3 temp = spawnPos + (Random.insideUnitSphere * SpawnRadius); //Choose random place to spawn
-                temp.y = spawnPos.y;
-
-                GameObject newDebuff = Instantiate(debuffToSpawn, temp, spawn.rotation);  //Spawn enemies
-
-                newDebuff.SetActive(true);
-            }
-        }
+        newPrefab.SetActive(true);
     }
 
-    //fonksiyonn yap
+    private void SpawnAmount(GameObject[] prefab, float spawnY, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Spawn(prefab, spawnY);
+        }
+    }
 }
 

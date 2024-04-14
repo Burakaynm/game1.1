@@ -447,6 +447,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 8a6da89befde9c4488a3495843c9a026, type: 2}
   currDistance: 0
   currSpeed: 0
+  rangedAttack: {fileID: 0}
 --- !u!114 &4419919567861924690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,8 +460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c93ba2a9035ad42995768ef723ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 200
+  startingHealth: 100
   currentHealth: 0
+  isAlive: 1
 --- !u!1 &3312486801664689943
 GameObject:
   m_ObjectHideFlags: 0

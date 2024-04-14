@@ -664,6 +664,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 9e81b45e5209c5b4db4803a885ba5391, type: 2}
   currDistance: 0
   currSpeed: 0
+  rangedAttack: {fileID: 0}
 --- !u!114 &5802648744373472851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 75
   currentHealth: 0
+  isAlive: 1
 --- !u!1 &1849239188663008
 GameObject:
   m_ObjectHideFlags: 0

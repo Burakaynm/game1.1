@@ -17,7 +17,7 @@ public class EnemyRangedAttack : MonoBehaviour
 
     private float attackInterval = 1.1f;
     private float timer;
-    private float projectileSpeed = 10f;
+    private float projectileSpeed = 15f;
 
     private bool inRange = false;
     private bool firstAnim = true;

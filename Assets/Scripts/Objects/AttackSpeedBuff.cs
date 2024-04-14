@@ -6,8 +6,10 @@ using UnityEngine;
 public class AttackSpeedBuff : PowerUpEffect
 {
     public float amount;
+    public float baseAttackSpeed = PlayerController.attackSpeed;
+
     public override void Apply(GameObject target)
     {
-        PlayerController.attackSpeed += amount;
+        PlayerController.attackSpeed += amount;       
     }
 }

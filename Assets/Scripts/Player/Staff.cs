@@ -7,7 +7,7 @@ public class Staff : MonoBehaviour
 {
     public Transform projectileSpawn;
 
-    private float projectileSpeed = 20f;
+    private float projectileSpeed = 30f;
     public float rpm;
     private float nextPossibleShootTime;
     public float secondsBetweenShots;

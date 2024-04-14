@@ -18,8 +18,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         isKilled = false;
-        if (enemyController == null) Debug.LogError("EnemyController is not assigned!");
-        if (enemyData == null) Debug.LogError("EnemyData is not assigned!");
+        
         playerHealth = FindAnyObjectByType<PlayerHealth>();
     }
     private void Update()

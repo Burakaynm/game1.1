@@ -8,24 +8,18 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    private Animator animator;
+    private Animator animator; 
     private Camera cam;
     public Rigidbody rb;
     [SerializeField] private LayerMask groundMask;
 
-    //private Quaternion targetRotation;
-
-    public float speed = 8f;
+    public static float moveSpeed = 8f;
     public float rotationSpeed = 2000f;
     public static float attackSpeed = 1f;
 
     Vector3 movement;
 
     public List<GameObject> characters = new();
-
-    //[HideInInspector] public UnityEvent<int> ThunderBolt = new();
-
-    public bool x = false;
 
     private void Start()
     {
@@ -34,21 +28,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //if (x)
-        //{
-        //    x = false;
-        //    ThunderBolt.Invoke(15);
-        //}
-
-
         Move();
-
         Aim();
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void Move()

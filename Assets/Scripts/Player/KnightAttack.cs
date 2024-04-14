@@ -19,11 +19,10 @@ public class KnightAttack : MonoBehaviour
 
     void Update()
     {
-        if (health.currentHealth > 0)
-        {
-            Attack();
-            PlayerInteract();
-        }
+
+        Attack();
+        //PlayerInteract();
+
     }
 
     void Attack()
@@ -55,11 +54,11 @@ public class KnightAttack : MonoBehaviour
 
     }
 
-    private void PlayerInteract()
-    {
-        if (Input.GetButtonDown("Interact"))
-        {
-            animator.SetTrigger("Interact");
-        }
-    }
+    //private void PlayerInteract()
+    //{
+    //    if (Input.GetButtonDown("Ultimate"))
+    //    {
+    //        animator.SetTrigger("Ultimate");
+    //    }
+    //}
 }

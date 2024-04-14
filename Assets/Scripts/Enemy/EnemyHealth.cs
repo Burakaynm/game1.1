@@ -5,9 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     private Animator animator;
     private EnemyController enemyController;
-    public Interactor interactor;
-    private PlayerController playerController;
-    public UIManager manager;
+    private MageAttack mageAttack;
 
     public int startingHealth;
     public int currentHealth;
@@ -24,14 +22,14 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!playerController) playerController = FindObjectOfType<PlayerController>();
+        if(!mageAttack) mageAttack = FindObjectOfType<MageAttack>();
 
-        interactor.ThunderBolt.AddListener(TakeDamage);
+        mageAttack.ThunderBolt.AddListener(TakeDamage);
     }
 
     private void OnDisable()
     {
-        interactor.ThunderBolt.RemoveListener(TakeDamage);
+        mageAttack.ThunderBolt.RemoveListener(TakeDamage);
     }
 
     public void TakeDamage(int damage)
@@ -53,8 +51,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
-
     private void Hurt()
     {
         animator.SetBool("isHurt", false);
@@ -69,7 +65,6 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("isAttacking", false);
         Destroy(gameObject, 5f);
     }
-
 }
 
 

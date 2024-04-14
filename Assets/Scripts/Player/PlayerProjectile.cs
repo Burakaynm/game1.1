@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    private int projectileDamage = 15;
+    private int projectileDamage = 25;
 
     private void OnTriggerEnter(Collider other)
     {

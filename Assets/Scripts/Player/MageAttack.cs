@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 
 public class MageAttack : MonoBehaviour
@@ -8,43 +9,33 @@ public class MageAttack : MonoBehaviour
     public Staff staff;
     public Animator animator;
     public PlayerHealth health;
+    [HideInInspector] public UnityEvent<int> ThunderBolt = new();
 
-    //private int pushDamage = 5;
+    public float shootingSpeed = 4f;
+    private float baseMoveSpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        baseMoveSpeed = PlayerController.moveSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
         if (health.currentHealth > 0)
         {
-            //ControlMouse();
+            
             ShootMagic();
-            PlayerInteract();
+            PlayerUltimate();
         }
     }
 
     private void ShootMagic()
     {
-        //if (Input.GetButtonDown("IncAttackSpeed"))
-        //{
-        //    PlayerController.attackSpeed++;
-        //}
-        //else if (Input.GetButtonDown("DecAttackSpeed"))
-        //{
-        //    if (PlayerController.attackSpeed > 1)
-        //    {
-        //        PlayerController.attackSpeed--;
-        //    }
-        //}
-
         if (Input.GetMouseButton(0) /*|| Input.GetMouseButtonDown(1)*/)
         {
+            PlayerController.moveSpeed = shootingSpeed;
             animator.SetFloat("AttackSpeed", PlayerController.attackSpeed);
             animator.SetBool("isShooting", true);
             animator.SetFloat("AttackNo", 0);
@@ -56,8 +47,8 @@ public class MageAttack : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             animator.SetBool("isShooting", false);
+            PlayerController.moveSpeed = baseMoveSpeed;
         }
-
     }
 
     public void MageAttackBase()
@@ -65,11 +56,12 @@ public class MageAttack : MonoBehaviour
         staff.Shoot();
     }
 
-    private void PlayerInteract()
+    private void PlayerUltimate()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Ultimate"))
         {
-            animator.SetTrigger("Interact");
+            animator.SetTrigger("Ultimate");
+            ThunderBolt.Invoke(100);
         }
     }
 }

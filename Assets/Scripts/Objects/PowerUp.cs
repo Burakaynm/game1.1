@@ -5,6 +5,14 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     public PowerUpEffect powerUpEffect;
+    public GameObject collectEffect;
+
+    public float rotationSpeed;
+
+    private void Update()
+    {
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,10 +20,12 @@ public class PowerUp : MonoBehaviour
         {
             Destroy(gameObject);
             powerUpEffect.Apply(other.gameObject);
+            if (collectEffect)
+                Instantiate(collectEffect, transform.position, Quaternion.identity);
         }
     }
     private void OnEnable()
     {
-        Destroy(gameObject, 20);
+        Destroy(gameObject, 10);
     }
 }
