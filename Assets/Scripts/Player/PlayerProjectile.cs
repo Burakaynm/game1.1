@@ -11,7 +11,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && enemyHealth.currentHealth > 0)
         {
             enemyHealth.TakeDamage(projectileDamage);
             gameObject.SetActive(false);

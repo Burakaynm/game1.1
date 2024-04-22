@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -71,8 +72,13 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("isAlive", false);
         playerController.enabled = false;
         transform.position = transform.position;
-        Destroy(gameObject, 5f);
+        RestartScene();
     }
 
+    public void RestartScene()
+    {
+        Scene thisScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(thisScene.name);
+    }
 
 }

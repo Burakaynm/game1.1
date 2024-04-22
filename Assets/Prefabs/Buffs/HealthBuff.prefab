@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 11400000, guid: 26fdc45c831fe5e408e9f34edfaa2a23, type: 2}
+  collectEffect: {fileID: 0}
+  rotationSpeed: 0

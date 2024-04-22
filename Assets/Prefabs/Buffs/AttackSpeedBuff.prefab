@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &565339771112000881
 Transform:
   m_ObjectHideFlags: 0
@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 11400000, guid: 74642ecb0ac83fe4aa8fbfbd7399c39c, type: 2}
+  collectEffect: {fileID: 7860676529186283201}
+  rotationSpeed: 0

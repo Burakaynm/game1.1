@@ -931,7 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 675019523}
-  healthBuff: {fileID: 11400000, guid: 26fdc45c831fe5e408e9f34edfaa2a23, type: 2}
 --- !u!1 &692025282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1500939411536426, guid: 274c4c35ed05ea14c87492064b3cadfd, type: 3}
@@ -1063,7 +1062,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ea4a26d7ed6e804182ca5b588bd6eb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfb7b5b8cd3ec3d43998fe9f23a659dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3052,7 +3051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1970521707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3371,10 +3370,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4984922457313398336, guid: 4a93af24bf2e6944c99b6b19ce27a91b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 344195220019009083}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a93af24bf2e6944c99b6b19ce27a91b, type: 3}
 --- !u!114 &344195220019009077 stripped
 MonoBehaviour:
@@ -3408,19 +3404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880b1b1b37f62ef42869752f3ba58eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &344195220019009083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344195220019009078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d208470b1a7c37f4eb8c210899479eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 6ea4a26d7ed6e804182ca5b588bd6eb7, type: 3}
 --- !u!4 &596346681632472022
 Transform:
   m_ObjectHideFlags: 0
@@ -4000,7 +3983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7325932374603945683
 Transform:
   m_ObjectHideFlags: 0
@@ -4034,10 +4017,12 @@ MonoBehaviour:
   - {fileID: 1480891928}
   buffPrefabs:
   - {fileID: 1932252988361774, guid: 59c7078d344dfe94f97e849fe4f0dce0, type: 3}
+  - {fileID: 1388765730846040, guid: 409010852d1134147862865a8889b834, type: 3}
+  - {fileID: 1311892635432530, guid: 59fd4762fc827164bb3eadbefb882946, type: 3}
   debuffPrefabs: []
   spawn: {fileID: 344195220019009079}
   enemySpawnInterval: 5
-  buffSpawnInterval: 5
+  buffSpawnInterval: 10
   debuffSpawnInterval: 0
 --- !u!23 &7338761658242215440
 MeshRenderer:
