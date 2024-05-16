@@ -18,8 +18,8 @@ public class PowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            powerUpEffect.Apply(other.gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
+            powerUpEffect.Apply(other.gameObject, this);
             if (collectEffect)
                 Instantiate(collectEffect, transform.position, Quaternion.identity);
         }

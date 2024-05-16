@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth += amount;
         UpdateHealth(currentHealth);
-        Debug.Log("can eklendi");
+        CharacterEvents.characterHealed.Invoke(gameObject, amount);
 
         if (currentHealth > startingHealth)
         {
@@ -72,13 +73,12 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("isAlive", false);
         playerController.enabled = false;
         transform.position = transform.position;
-        RestartScene();
+        StartCoroutine(RestartScene());
     }
-
-    public void RestartScene()
+    private IEnumerator RestartScene()
     {
+        yield return new WaitForSeconds(5);
         Scene thisScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(thisScene.name);
+        SceneManager.LoadScene(thisScene.name);    
     }
-
 }

@@ -7,13 +7,18 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 
+#pragma warning disable IDE0005
+using Serilog = Meryel.UnityCodeAssist.Serilog;
+#pragma warning restore IDE0005
+
+
 #nullable enable
 
 
 namespace Meryel.UnityCodeAssist.Editor
 {
 
-    [InitializeOnLoad]
+    //[InitializeOnLoad]
     public static class Monitor
     {
         private readonly static string tagManagerFilePath;
@@ -28,15 +33,21 @@ namespace Meryel.UnityCodeAssist.Editor
         static Monitor()
         {
             tagManagerFilePath = CommonTools.GetTagManagerFilePath();
-            previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
-
+            try
+            {
+                previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            }
+            catch (System.Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
             dirtyDict = new Dictionary<GameObject, int>();
             dirtyCounter = 0;
 
             EditorApplication.hierarchyChanged += OnHierarchyChanged;
             EditorApplication.update += OnUpdate;
             Undo.postprocessModifications += MyPostprocessModificationsCallback;
-            Undo.undoRedoPerformed += MyUndoCallback;
+            //Undo.undoRedoPerformed += MyUndoCallback;
             Selection.selectionChanged += OnSelectionChanged;
             //EditorSceneManager.sceneOpened += EditorSceneManager_sceneOpened;
             EditorSceneManager.activeSceneChangedInEditMode += EditorSceneManager_activeSceneChangedInEditMode;
@@ -44,6 +55,11 @@ namespace Meryel.UnityCodeAssist.Editor
             Application.logMessageReceived += Application_logMessageReceived;
             //System.Threading.Tasks.TaskScheduler.UnobservedTaskException += 
         }
+
+        /// <summary>
+        /// Empty method for invoking static class ctor
+        /// </summary>
+        public static void Bump() { }
 
         private static void EditorSceneManager_activeSceneChangedInEditMode(Scene arg0, Scene arg1)
         {
@@ -64,7 +80,15 @@ namespace Meryel.UnityCodeAssist.Editor
             if (Selection.activeObject)
                 currentEditorFocus = Selection.activeObject.GetType().ToString();
 
-            var currentTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            var currentTagManagerLastWrite = previousTagManagerLastWrite;
+            try
+            {
+                currentTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            }
+            catch (System.Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
             if (currentTagManagerLastWrite != previousTagManagerLastWrite)
             {
                 previousTagManagerLastWrite = currentTagManagerLastWrite;
@@ -81,7 +105,7 @@ namespace Meryel.UnityCodeAssist.Editor
             {
                 isAppFocused = UnityEditorInternal.InternalEditorUtility.isApplicationActive;
                 OnOnUnityEditorFocusChanged(isAppFocused);
-                Serilog.Log.Debug("On focus {State}", isAppFocused);
+                //Serilog.Log.Debug("On focus {State}", isAppFocused);
             }
         }
 
@@ -118,11 +142,11 @@ namespace Meryel.UnityCodeAssist.Editor
             return modifications;
         }
 
-        static void MyUndoCallback()
-        {
-            Serilog.Log.Debug("Monitor {Event}", nameof(MyUndoCallback));
-            // code for the action to take on Undo
-        }
+        //static void MyUndoCallback()
+        //{
+        //    Serilog.Log.Debug("Monitor {Event}", nameof(MyUndoCallback));
+        //    // code for the action to take on Undo
+        //}
 
         static void OnOnUnityEditorFocusChanged(bool isFocused)
         {
@@ -170,7 +194,12 @@ namespace Meryel.UnityCodeAssist.Editor
             else if (obj is GameObject go && go)
                 SetDirty(go);
             else if (obj is Component component && component)
-                SetDirty(component.gameObject);
+            //SetDirty(component.gameObject);
+            {
+                var componentGo = component.gameObject;
+                if (componentGo)
+                    SetDirty(componentGo);
+            }
             //else
                 //;//**--scriptable obj
         }

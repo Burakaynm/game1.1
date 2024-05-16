@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300273, g: 0.49219579, b: 0.5719249, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -931,11 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 675019523}
---- !u!1 &692025282 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1500939411536426, guid: 274c4c35ed05ea14c87492064b3cadfd, type: 3}
-  m_PrefabInstance: {fileID: 6420458778461428608}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &730147045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,11 +3023,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893538450}
   m_CullTransparentMesh: 1
---- !u!1 &1900249956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1812659917213882, guid: 705458a9eac3ae740932e6aa33f3ca89, type: 3}
-  m_PrefabInstance: {fileID: 3150424373017952796}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1970521706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,10 +3309,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 675019524}
-    - target: {fileID: 4867126516293384662, guid: 4a93af24bf2e6944c99b6b19ce27a91b, type: 3}
-      propertyPath: shootingSpeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4984922457313398336, guid: 4a93af24bf2e6944c99b6b19ce27a91b, type: 3}
       propertyPath: m_Name
       value: Player Classes
@@ -3494,14 +3480,6 @@ PrefabInstance:
       propertyPath: gameCanvas
       value: 
       objectReference: {fileID: 787665841}
-    - target: {fileID: 4691159561208284594, guid: a31d2488fee4e9248b21c76b0bfd0441, type: 3}
-      propertyPath: damageTextPrefab
-      value: 
-      objectReference: {fileID: 2646036173002436910, guid: ccfe55bdc72cf26458515add158eb5de, type: 3}
-    - target: {fileID: 4691159561208284594, guid: a31d2488fee4e9248b21c76b0bfd0441, type: 3}
-      propertyPath: healthTextPrefab
-      value: 
-      objectReference: {fileID: 2646036173002436910, guid: 19924c52886735342af9e34fe039637e, type: 3}
     - target: {fileID: 4885585931763721770, guid: a31d2488fee4e9248b21c76b0bfd0441, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -4012,17 +3990,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 1900249956}
-  - {fileID: 692025282}
   - {fileID: 1480891928}
   buffPrefabs:
-  - {fileID: 1932252988361774, guid: 59c7078d344dfe94f97e849fe4f0dce0, type: 3}
-  - {fileID: 1388765730846040, guid: 409010852d1134147862865a8889b834, type: 3}
   - {fileID: 1311892635432530, guid: 59fd4762fc827164bb3eadbefb882946, type: 3}
+  - {fileID: 1932252988361774, guid: 59c7078d344dfe94f97e849fe4f0dce0, type: 3}
   debuffPrefabs: []
   spawn: {fileID: 344195220019009079}
   enemySpawnInterval: 5
-  buffSpawnInterval: 10
+  buffSpawnInterval: 2
   debuffSpawnInterval: 0
 --- !u!23 &7338761658242215440
 MeshRenderer:

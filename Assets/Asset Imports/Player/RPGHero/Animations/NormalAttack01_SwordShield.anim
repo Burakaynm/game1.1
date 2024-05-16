@@ -14593,7 +14593,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.56666666
+        time: 0.36666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -14614,7 +14614,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AttackRange
+    path: AttackRange1
     classID: 65
     script: {fileID: 0}
     flags: 0
@@ -14627,7 +14627,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2128890732
+      path: 3349554831
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 65
@@ -33772,7 +33772,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.56666666
+        time: 0.36666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -33793,7 +33793,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AttackRange
+    path: AttackRange1
     classID: 65
     script: {fileID: 0}
     flags: 0

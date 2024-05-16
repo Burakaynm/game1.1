@@ -22,14 +22,19 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!mageAttack) mageAttack = FindObjectOfType<MageAttack>();
-
-        mageAttack.ThunderBolt.AddListener(TakeDamage);
+        if (mageAttack)
+        {
+            Debug.Log("mage girdi");
+            mageAttack.ThunderBolt.AddListener(TakeDamage);
+        }
     }
 
     private void OnDisable()
     {
-        mageAttack.ThunderBolt.RemoveListener(TakeDamage);
+        if (mageAttack)
+        {
+            mageAttack.ThunderBolt.RemoveListener(TakeDamage);
+        }
     }
 
     public void TakeDamage(int damage)

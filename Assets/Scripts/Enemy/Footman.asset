@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Footman
   m_EditorClassIdentifier: 
   followDistance: 50
-  speed: 0.006
+  speed: 0.005
   attackRange: 3.6
   damage: 15

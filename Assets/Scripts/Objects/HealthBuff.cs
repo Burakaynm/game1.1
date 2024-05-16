@@ -8,7 +8,7 @@ public class HealthBuff : PowerUpEffect
 {
     public int amount;
 
-    public override void Apply(GameObject target)
+    public override void Apply(GameObject target, MonoBehaviour invoker)
     {
         var playerHealth = target.GetComponent<PlayerHealth>();
         if (playerHealth.currentHealth < playerHealth.startingHealth)

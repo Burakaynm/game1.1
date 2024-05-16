@@ -6,6 +6,11 @@ using UnityEditor;
 using UnityEngine;
 
 
+#pragma warning disable IDE0005
+using Serilog = Meryel.UnityCodeAssist.Serilog;
+#pragma warning restore IDE0005
+
+
 #nullable enable
 
 
@@ -26,26 +31,61 @@ namespace Meryel.UnityCodeAssist.Editor.Input
             EditorApplication.update += Update;
             inputManagerFilePath = CommonTools.GetInputManagerFilePath();
 
-            previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
+            try
+            {
+                previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
         }
 
         void Update()
         {
-            var currentInputManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
+#if !ENABLE_LEGACY_INPUT_MANAGER
+            return;
+#endif
+
+#pragma warning disable CS0162
+#pragma warning disable IDE0035
+
+            var currentInputManagerLastWrite = previousTagManagerLastWrite;
+            try
+            {
+                currentInputManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
             if (currentInputManagerLastWrite != previousTagManagerLastWrite)
             {
                 previousTagManagerLastWrite = currentInputManagerLastWrite;
                 Bump();
             }
+
+#pragma warning restore CS0162
+#pragma warning restore IDE0035
         }
 
         public void Bump()
         {
+#if !ENABLE_LEGACY_INPUT_MANAGER
+            return;
+#endif
+#pragma warning disable CS0162
+#pragma warning disable IDE0035
+
             Serilog.Log.Debug("InputMonitor {Event}", nameof(Bump));
 
             var inputManager = new UnityInputManager();
             inputManager.ReadFromPath(inputManagerFilePath);
             inputManager.SendData();
+
+
+#pragma warning restore CS0162
+#pragma warning restore IDE0035
         }
 
     }

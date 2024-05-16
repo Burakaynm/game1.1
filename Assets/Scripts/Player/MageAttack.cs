@@ -11,7 +11,7 @@ public class MageAttack : MonoBehaviour
     public PlayerHealth health;
     [HideInInspector] public UnityEvent<int> ThunderBolt = new();
 
-    public float shootingSpeed = 4f;
+    public float shootingMoveSpeed = 4f;
     private float baseMoveSpeed;
 
     void Start()
@@ -35,7 +35,7 @@ public class MageAttack : MonoBehaviour
     {
         if (Input.GetMouseButton(0) /*|| Input.GetMouseButtonDown(1)*/)
         {
-            PlayerController.moveSpeed = shootingSpeed;
+            PlayerController.moveSpeed = shootingMoveSpeed;
             animator.SetFloat("AttackSpeed", PlayerController.attackSpeed);
             animator.SetBool("isShooting", true);
             animator.SetFloat("AttackNo", 0);

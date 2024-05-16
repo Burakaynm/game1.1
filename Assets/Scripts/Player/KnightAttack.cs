@@ -12,11 +12,6 @@ public class KnightAttack : MonoBehaviour
     private int heavyDamage = 20;
     private int damage;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     void Update()
     {
 
@@ -25,7 +20,7 @@ public class KnightAttack : MonoBehaviour
 
     }
 
-    void Attack()
+    public void Attack()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
